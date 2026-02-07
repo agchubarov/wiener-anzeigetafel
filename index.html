@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wien U-Bahn Anzeigetafel</title>
+  <meta name="description" content="Live Vienna U-Bahn departure board with authentic WU3 segment display" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+
+<body>
+  <!-- Marquee Banner -->
+  <div class="marquee">
+    <div class="marquee__content">
+      <span>★ Diese Anzeige ist für Vollbild optimiert • Drücken Sie F11 (Windows) oder ⌘⇧F (Mac) ★</span>
+      <span>★ Diese Anzeige ist für Vollbild optimiert • Drücken Sie F11 (Windows) oder ⌘⇧F (Mac) ★</span>
+    </div>
+  </div>
+
+  <!-- Background Video -->
+  <video id="bg-video" autoplay muted loop playsinline>
+    <source src="/video/station.mp4" type="video/mp4" />
+  </video>
+
+  <!-- Main Tafel Container -->
+  <main class="tafel-container">
+    <!-- Metal Housing Frame -->
+    <div class="tafel-housing">
+      <!-- Corner screws -->
+      <span class="tafel-housing__screw tafel-housing__screw--tl"></span>
+      <span class="tafel-housing__screw tafel-housing__screw--tr"></span>
+      <span class="tafel-housing__screw tafel-housing__screw--bl"></span>
+      <span class="tafel-housing__screw tafel-housing__screw--br"></span>
+
+      <!-- Main Display Screen -->
+      <div class="tafel">
+        <!-- Gleis Indicator -->
+        <div class="tafel__gleis">
+          <span class="tafel__gleis-label">Gleis</span>
+          <span id="gleis-number" class="tafel__gleis-number">2</span>
+        </div>
+
+        <!-- Departure Rows - 20 LED cells each -->
+        <div class="tafel__departures">
+          <div class="led-row" data-row="0"></div>
+          <div class="led-row" data-row="1"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Separate Clock Module -->
+    <div class="clock-housing">
+      <span class="clock-housing__screw clock-housing__screw--tl"></span>
+      <span class="clock-housing__screw clock-housing__screw--tr"></span>
+      <span class="clock-housing__screw clock-housing__screw--bl"></span>
+      <span class="clock-housing__screw clock-housing__screw--br"></span>
+
+      <div class="tafel__clock">
+        <svg viewBox="0 0 100 100" class="clock">
+          <circle cx="50" cy="50" r="45" class="clock__face" />
+          <!-- Hour markers -->
+          <g class="clock__markers">
+            <line x1="50" y1="10" x2="50" y2="15" />
+            <line x1="50" y1="85" x2="50" y2="90" />
+            <line x1="10" y1="50" x2="15" y2="50" />
+            <line x1="85" y1="50" x2="90" y2="50" />
+          </g>
+          <!-- Hands -->
+          <line id="hour-hand" x1="50" y1="50" x2="50" y2="28" class="clock__hand clock__hand--hour" />
+          <line id="minute-hand" x1="50" y1="50" x2="50" y2="18" class="clock__hand clock__hand--minute" />
+          <circle cx="50" cy="50" r="3" class="clock__center" />
+        </svg>
+      </div>
+    </div>
+  </main>
+
+  <!-- Station Selector Toggle -->
+  <button id="sidebar-toggle" class="sidebar-toggle" aria-label="Station auswählen">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Station Selector Sidebar -->
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar__content">
+      <h2>Station wählen</h2>
+      <div id="station-list" class="station-list">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </aside>
+  <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
