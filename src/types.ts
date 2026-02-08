@@ -1,21 +1,5 @@
 // Wien U-Bahn Anzeigetafel — TypeScript Types
 
-/** A single departure from the API */
-export interface Departure {
-    countdown: number;
-    timePlanned?: string;
-    timeReal?: string;
-}
-
-/** A line with its departures */
-export interface Line {
-    name: string;
-    towards: string;
-    direction: 'H' | 'R';
-    barrierFree: boolean;
-    departures: Departure[];
-}
-
 /** A station with its RBL IDs */
 export interface Station {
     name: string;
@@ -35,6 +19,14 @@ export interface DisplayDeparture {
     line: string;
     destination: string;
     countdown: number | 'arriving';
+}
+
+/** Persisted station selection in localStorage */
+export interface SavedStation {
+    name: string;
+    rblId: number;
+    gleisNum: number;
+    atTerminus: boolean;
 }
 
 /** API response structure (simplified) */

@@ -1,0 +1,90 @@
+/* ==========================================================================
+   Debug — Toggle Button & Outline Overlays
+   ========================================================================== */
+
+.debug-toggle {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.debug-toggle:hover {
+  opacity: 1;
+}
+
+.debug-toggle__indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--led-yellow-green);
+  background: transparent;
+  transition: background 0.2s;
+}
+
+.debug-toggle__label {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: var(--led-yellow-green);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+body.debug-mode .debug-toggle__indicator {
+  background: var(--led-yellow-green);
+  box-shadow: 0 0 8px var(--led-glow);
+}
+
+/* Debug Outlines (using outline to avoid layout shift) */
+body.debug-mode .tafel-housing {
+  outline: 2px solid red;
+}
+
+body.debug-mode .tafel {
+  outline: 2px solid blue;
+}
+
+body.debug-mode .tafel__gleis {
+  outline: 2px solid salmon;
+}
+
+body.debug-mode .tafel__gleis-label {
+  outline: 1px solid cyan;
+}
+
+body.debug-mode .tafel__gleis-number {
+  outline: 1px solid lime;
+}
+
+body.debug-mode .tafel__departures {
+  outline: 2px solid green;
+}
+
+body.debug-mode .clock-housing {
+  outline: 2px solid orange;
+}
+
+body.debug-mode .tafel__clock {
+  outline: 2px solid purple;
+}
+
+body.debug-mode .led-row {
+  outline: 1px dashed yellow;
+}
+
+body.debug-mode .led-cell {
+  outline: 1px solid magenta;
+}
+
+body.debug-mode .led-cell__char {
+  outline: 1px solid cyan;
+}

@@ -1,0 +1,157 @@
+/* ==========================================================================
+   Tafel — Housing, LED Cells, Departures, Loading States
+   ========================================================================== */
+
+.tafel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 0;
+  gap: 0.5rem;
+}
+
+/* Metal Housing Frame */
+.tafel-housing {
+  position: relative;
+  background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
+  border-radius: calc(var(--H) * 0.06);
+  padding: var(--bezel);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+  width: calc(var(--H) * 3.8);
+  height: var(--H);
+}
+
+.tafel-housing__screw {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle at 30% 30%, #888, #333);
+  border-radius: 50%;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.tafel-housing__screw::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  height: 2px;
+  background: #222;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.tafel-housing__screw--tl {
+  top: 8px;
+  left: 8px;
+}
+
+.tafel-housing__screw--tr {
+  top: 8px;
+  right: 8px;
+}
+
+.tafel-housing__screw--bl {
+  bottom: 8px;
+  left: 8px;
+}
+
+.tafel-housing__screw--br {
+  bottom: 8px;
+  right: 8px;
+}
+
+.tafel {
+  display: grid;
+  grid-template-columns: calc(var(--H) * 0.7) 1fr;
+  gap: 0;
+  align-items: center;
+  background: #1e1e1e;
+  border-radius: calc(var(--H) * 0.04);
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Gleis Indicator */
+.tafel__gleis {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: calc(var(--H) * 0.7);
+}
+
+.tafel__gleis-label {
+  font-size: calc(var(--H) * 0.08);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--led-dim);
+  margin-bottom: calc(var(--H) * 0.02);
+}
+
+.tafel__gleis-number {
+  font-size: calc(var(--H) * 0.35);
+  text-shadow: 0 0 20px var(--led-glow);
+}
+
+/* Departure Rows */
+.tafel__departures {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(var(--H) * 0.12);
+  height: 100%;
+  padding: calc(var(--H) * 0.05);
+}
+
+/* LED Display Rows */
+.led-row {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.led-cell {
+  position: relative;
+  width: 2rem;
+  height: 3rem;
+  overflow: visible;
+  background: #0d1a10;
+  border-radius: 1px;
+  border: 1px solid #1a3020;
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.led-cell__char {
+  position: absolute;
+  font-size: 2.8rem;
+  line-height: 1;
+  color: var(--led-yellow-green);
+  text-shadow: 0 0 10px var(--led-glow);
+}
+
+.led-cell.arriving {
+  animation: cell-blink 1s ease-in-out infinite;
+}
+
+@keyframes cell-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* Loading & Error States */
+.tafel--loading .tafel__departures,
+.tafel--error .tafel__departures {
+  opacity: 0.5;
+}
