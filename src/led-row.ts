@@ -1,13 +1,8 @@
 // Wien U-Bahn Anzeigetafel — LED Row Rendering
 
 import { STATION_CELLS } from './constants';
+import { createSegmentCell } from './segment-cell';
 import type { DisplayDeparture } from './types';
-
-function createCell(char: string, extraClasses = ''): string {
-    const displayChar = char === ' ' ? '&nbsp;' : char;
-    const cellClass = extraClasses ? `led-cell ${extraClasses}` : 'led-cell';
-    return `<span class="${cellClass}"><span class="led-cell__char">${displayChar}</span></span>`;
-}
 
 export function createLedRow(destination: string, countdown: number | string): string {
     const cells: string[] = [];
@@ -15,17 +10,17 @@ export function createLedRow(destination: string, countdown: number | string): s
     const stationText = destination.toUpperCase().padEnd(STATION_CELLS, ' ').slice(0, STATION_CELLS);
 
     const isArriving = countdown === 'arriving' || countdown === 0;
-    const timeText = isArriving ? ' ★' : String(countdown).padStart(2, ' ');
-    const blinkClass = isArriving ? 'arriving' : '';
+    const timeText = isArriving ? '**' : String(countdown).padStart(2, ' ');
 
     for (let i = 0; i < STATION_CELLS; i++) {
-        cells.push(createCell(stationText[i]));
+        cells.push(createSegmentCell(stationText[i]));
     }
 
-    cells.push(createCell(' '));
+    cells.push(createSegmentCell(' '));
 
+    const arrivingClasses = ['arriving-prev', 'arriving-last'];
     for (let i = 0; i < 2; i++) {
-        cells.push(createCell(timeText[i], blinkClass));
+        cells.push(createSegmentCell(timeText[i], isArriving ? arrivingClasses[i] : ''));
     }
 
     return cells.join('');

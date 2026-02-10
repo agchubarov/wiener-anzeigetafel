@@ -4,7 +4,8 @@
 
 A browser-based recreation of authentic Vienna U-Bahn departure boards (Anzeigetafel).
 Single-page app, vanilla TypeScript + Vite, no framework. Displays real-time departures
-from the Wiener Linien API with WU3 segment display font.
+from the Wiener Linien API with SVG-based segment cell rendering (84 path segments per cell,
+driven by a character→segment mapping).
 
 ## Tech Stack
 
@@ -13,19 +14,30 @@ from the Wiener Linien API with WU3 segment display font.
 - **Package manager:** pnpm (considering bun migration)
 - **Styling:** Plain CSS with custom properties (no preprocessor)
 - **No framework** — vanilla DOM manipulation
-- **Font:** WU3 Segments (custom 7-segment display font)
+- **Display:** SVG segment cells (84-segment matrix per character, not a font)
+- **Font:** WU3 Segments (used only for marquee banner text)
 
 ## Project Structure
 
 ```
 src/
-  main.ts        — App entry point, init, state wiring
-  api.ts         — Wiener Linien API fetching + parsing
-  types.ts       — TypeScript interfaces
-  stations.ts    — U-Bahn station data with RBL IDs
-  style.css      — All styles
-scripts/         — One-off helper scripts (not part of the app)
-public/fonts/    — WU3 segment font files
+  main.ts          — App entry point, init, state wiring
+  api.ts           — Wiener Linien API fetching + parsing
+  types.ts         — TypeScript interfaces
+  stations.ts      — U-Bahn station data with RBL IDs
+  segment-map.ts   — Character→segment-ID mapping + SVG path data (84 segments)
+  segment-cell.ts  — Creates inline SVG segment cell HTML for a character
+  led-row.ts       — Builds LED row strings from departure data
+  terminus.ts      — Terminus station display logic
+  sidebar.ts       — Station selector sidebar
+  clock.ts         — Analog clock component
+  storage.ts       — localStorage persistence
+  constants.ts     — Shared constants (poll intervals, cell counts)
+  style.css        — Style entry point (imports split CSS)
+  styles/          — Split CSS modules (base, tafel, clock, sidebar, debug)
+scripts/           — One-off helper scripts (not part of the app)
+public/fonts/      — WU3 Segments font (marquee text only)
+segment-test.html  — Standalone segment cell test page
 ```
 
 ## Code Practices

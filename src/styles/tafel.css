@@ -116,37 +116,43 @@
   gap: 0.3rem;
 }
 
-.led-cell {
-  position: relative;
+/* LED Segment SVG */
+.led-segment {
+  display: block;
   width: 2rem;
   height: 3rem;
-  overflow: visible;
-  background: #0d1a10;
-  border-radius: 1px;
-  border: 1px solid #1a3020;
-  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
-.led-cell__char {
-  position: absolute;
-  font-size: 2.8rem;
-  line-height: 1;
-  color: var(--led-yellow-green);
-  text-shadow: 0 0 10px var(--led-glow);
+/* All segments start dim */
+.led-segment .segment {
+  fill: var(--led-dim);
+  transition: fill 300ms ease, filter 300ms ease;
 }
 
-.led-cell.arriving {
-  animation: cell-blink 1s ease-in-out infinite;
+/* Lit segments glow */
+.led-segment .segment.lit {
+  fill: var(--led-yellow-green);
+  filter: drop-shadow(0 0 4px var(--led-glow));
 }
 
-@keyframes cell-blink {
-  0%,
-  100% {
-    opacity: 1;
+.led-segment.arriving-last .segment.lit {
+  animation: segment-blink 2s step-start infinite;
+}
+
+.led-segment.arriving-prev .segment.lit {
+  animation: segment-blink 2s step-start infinite;
+  animation-delay: -1s;
+}
+
+@keyframes segment-blink {
+  0% {
+    fill: var(--led-yellow-green);
+    filter: drop-shadow(0 0 4px var(--led-glow));
   }
 
   50% {
-    opacity: 0.3;
+    fill: var(--led-dim);
+    filter: none;
   }
 }
 

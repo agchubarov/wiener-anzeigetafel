@@ -40,7 +40,7 @@ body {
 }
 
 body {
-  font-family: 'WU3 Segments', monospace;
+  font-family: system-ui, -apple-system, sans-serif;
   background: #3a3a3a;
   color: var(--led-yellow-green);
   display: flex;
@@ -51,8 +51,7 @@ body {
 
 @font-face {
   font-family: 'WU3 Segments';
-  src: url('/fonts/wu3-segments.woff2') format('woff2'),
-    url('/fonts/wu3-segments.ttf') format('truetype');
+  src: url('/fonts/wu3-segments.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -86,6 +85,7 @@ body {
 }
 
 .marquee__content span {
+  font-family: 'WU3 Segments', monospace;
   font-size: 1.5rem;
   letter-spacing: 0.1em;
   color: var(--led-yellow-green);
