@@ -185,8 +185,8 @@ Based on the reference images, the Tafel has these visual elements:
 ### Layout (2-row departure display)
 ```
 ┌──────┬────────────────────────────────┬─────────┐
-│Gleis │  LINE  DESTINATION        ★  │ [CLOCK] │
-│  2   │  LINE  DESTINATION        5  │         │
+│Gleis │  DESTINATION                 ★ │ [CLOCK] │
+│  2   │  DESTINATION                  5│         │
 └──────┴────────────────────────────────┴─────────┘
 ```
 
