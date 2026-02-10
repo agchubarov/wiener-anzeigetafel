@@ -88,14 +88,17 @@
 }
 
 .tafel__gleis-label {
-  font-size: calc(var(--H) * 0.08);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--led-dim);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 800;
+  font-size: calc(var(--H) * 0.15);
+
+  color: var(--led-gleis);
   margin-bottom: calc(var(--H) * 0.02);
 }
 
 .tafel__gleis-number {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
   font-size: calc(var(--H) * 0.35);
   text-shadow: 0 0 20px var(--led-glow);
 }

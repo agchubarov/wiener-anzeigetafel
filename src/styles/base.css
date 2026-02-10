@@ -11,6 +11,7 @@
   --led-yellow-green: #c8e000;
   --led-glow: rgba(200, 224, 0, 0.6);
   --led-dim: rgba(200, 224, 0, 0.15);
+  --led-gleis: rgba(200, 254, 0);
 
   /* Tafel Housing */
   --tafel-bg: #1e1e1e;
