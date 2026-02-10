@@ -1,0 +1,103 @@
+/* ==========================================================================
+   Base — Reset, Variables, Font, Background
+   ========================================================================== */
+
+:root {
+  /* Proportional Base Unit */
+  --H: 260px;
+  --bezel: calc(var(--H) * 0.1);
+
+  /* LED Colors */
+  --led-yellow-green: #c8e000;
+  --led-glow: rgba(200, 224, 0, 0.6);
+  --led-dim: rgba(200, 224, 0, 0.15);
+
+  /* Tafel Housing */
+  --tafel-bg: #1e1e1e;
+  --tafel-border: #333;
+  --tafel-shadow: rgba(0, 0, 0, 0.8);
+
+  /* U-Bahn Line Colors */
+  --u1-red: #e20613;
+  --u2-purple: #a762a4;
+  --u3-orange: #ef7c00;
+  --u4-green: #00a54f;
+  --u6-brown: #8b5a2b;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #3a3a3a;
+  color: var(--led-yellow-green);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@font-face {
+  font-family: 'WU3 Segments';
+  src: url('/fonts/wu3-segments.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  filter: blur(12px) brightness(0.4);
+  z-index: -1;
+}
+
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(90deg, transparent, rgba(200, 224, 0, 0.1), transparent);
+  border-bottom: 1px solid var(--tafel-border);
+  padding: 0.75rem 0;
+  flex-shrink: 0;
+}
+
+.marquee__content {
+  display: flex;
+  gap: 4rem;
+  animation: marquee-scroll 20s linear infinite;
+  white-space: nowrap;
+}
+
+.marquee__content span {
+  font-family: 'WU3 Segments', monospace;
+  font-size: 1.5rem;
+  letter-spacing: 0.1em;
+  color: var(--led-yellow-green);
+  text-shadow: 0 0 8px var(--led-glow);
+}
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
