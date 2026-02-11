@@ -4,7 +4,7 @@ import './style.css';
 import { lines } from './stations';
 import { fetchDepartures } from './api';
 import { POLL_INTERVAL_MS } from './constants';
-import { updateClock } from './clock';
+import { initClock } from './clock';
 import { renderDepartures } from './led-row';
 import { startTerminusDisplay, stopTerminusDisplay } from './terminus';
 import { buildStationList, closeSidebar, toggleSidebar } from './sidebar';
@@ -119,8 +119,7 @@ function init(): void {
         }
     }
 
-    updateClock(el.hourHand, el.minuteHand);
-    setInterval(() => updateClock(el.hourHand, el.minuteHand), 1000);
+    initClock(el.hourHand, el.minuteHand);
 
     el.sidebarToggle.addEventListener('click', () => toggleSidebar(sidebarEl));
     el.sidebarOverlay.addEventListener('click', () => closeSidebar(sidebarEl));
