@@ -94,6 +94,7 @@ segment-test.html  — Standalone segment cell test page
 
 ```bash
 pnpm run dev      # Start dev server (localhost:5173)
+# continue testing on 5173 if it's already in use, no need to spin another port
 pnpm run build    # Type-check + production build
 pnpm run preview  # Preview production build
 ```
