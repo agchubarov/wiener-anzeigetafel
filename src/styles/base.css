@@ -9,6 +9,7 @@
 
   /* LED Colors */
   --led-yellow-green: rgba(202, 254, 0);
+  --led-yellow-green-more-green: rgba(150, 255, 0);
   --led-glow: rgba(200, 224, 0, 0.6);
   --led-dim: rgba(200, 224, 0, 0.15);
   --led-gleis: rgba(150, 255, 0, 0.6);

@@ -1,21 +1,19 @@
 // Wien U-Bahn Anzeigetafel — Terminus Display
 
 import { TERMINUS_MESSAGE_INTERVAL_MS } from './constants';
-import { createLedRow } from './led-row';
+import { createFreeTextLedRow } from './led-row';
 
 let terminusInterval: ReturnType<typeof setInterval> | null = null;
 
 function renderTerminusMessage(rows: NodeListOf<HTMLElement>, showGerman: boolean): void {
     if (rows[0]) {
-        rows[0].innerHTML = createLedRow(
-            showGerman ? 'NICHT EINSTEIG' : 'NO DEPARTURE',
-            '--'
+        rows[0].innerHTML = createFreeTextLedRow(
+            showGerman ? '' : 'NO DEPARTURE'
         );
     }
     if (rows[1]) {
-        rows[1].innerHTML = createLedRow(
-            showGerman ? 'ENDSTATION' : 'PLATFORM',
-            '--'
+        rows[1].innerHTML = createFreeTextLedRow(
+            showGerman ? 'NICHT EINSTEIGEN' : 'PLATFORM'
         );
     }
 }

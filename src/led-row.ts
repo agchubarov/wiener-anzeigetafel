@@ -1,6 +1,6 @@
 // Wien U-Bahn Anzeigetafel — LED Row Rendering
 
-import { STATION_CELLS } from './constants';
+import { STATION_CELLS, TOTAL_CELLS } from './constants';
 import { createSegmentCell } from './segment-cell';
 import type { DisplayDeparture } from './types';
 
@@ -21,6 +21,22 @@ export function createLedRow(destination: string, countdown: number | string): s
     const arrivingClasses = ['arriving-prev', 'arriving-last'];
     for (let i = 0; i < 2; i++) {
         cells.push(createSegmentCell(timeText[i], isArriving ? arrivingClasses[i] : ''));
+    }
+
+    return cells.join('');
+}
+
+export function createFreeTextLedRow(text: string): string {
+    const cells: string[] = [];
+    const upper = text.toUpperCase();
+    const truncated = upper.slice(0, TOTAL_CELLS);
+
+    const padTotal = TOTAL_CELLS - truncated.length;
+    const padLeft = Math.floor(padTotal / 2);
+    const centered = truncated.padStart(truncated.length + padLeft, ' ').padEnd(TOTAL_CELLS, ' ');
+
+    for (let i = 0; i < TOTAL_CELLS; i++) {
+        cells.push(createSegmentCell(centered[i]));
     }
 
     return cells.join('');
